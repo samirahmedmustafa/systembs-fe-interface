@@ -1,0 +1,131 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" [opened]="true" [opened]="true">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/example">
+                <mat-icon mat-list-icon>people</mat-icon>
+                example
+            </a>
+            <a mat-list-item routerLink="/citizens">
+                <mat-icon mat-list-icon>people</mat-icon>
+                Citizens
+            </a>
+            <a mat-list-item routerLink="/locations">
+                <mat-icon mat-list-icon>location_city</mat-icon>
+                Location
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item (click)="toggleDemographics()">
+                <mat-icon mat-list-icon>expand_more</mat-icon>
+                Demographics
+                <mat-icon class="submenu-arrow" *ngIf="demographics">expand_less</mat-icon>
+                <mat-icon class="submenu-arrow" *ngIf="!demographics">expand_more</mat-icon>
+            </a>
+            <div class="submenu" *ngIf="demographics">
+                <a mat-list-item routerLink="/states">
+                    <mat-icon mat-list-icon>location_city</mat-icon>
+                    States
+                </a>
+                <a mat-list-item routerLink="/cities">
+                    <mat-icon mat-list-icon>location_city</mat-icon>
+                    Cities
+                </a>
+                <a mat-list-item routerLink="/localities">
+                    <mat-icon mat-list-icon>location_city</mat-icon>
+                    Localities
+                </a>
+                <a mat-list-item routerLink="/neighbourhoods">
+                    <mat-icon mat-list-icon>location_city</mat-icon>
+                    Neighbourhoods
+                </a>
+                <a mat-list-item routerLink="/conditions">
+                    <mat-icon mat-list-icon>location_city</mat-icon>
+                    Building Conditions
+                </a>
+                <a mat-list-item routerLink="/buildingTypes">
+                    <mat-icon mat-list-icon>location_city</mat-icon>
+                    Building Types
+                </a>
+            </div>
+            <mat-divider></mat-divider>
+            <a mat-list-item (click)="toggleSkills()">
+                <mat-icon mat-list-icon>expand_more</mat-icon>
+                Education
+                <mat-icon class="submenu-arrow" *ngIf="skills">expand_less</mat-icon>
+                <mat-icon class="submenu-arrow" *ngIf="!skills">expand_more</mat-icon>
+            </a>
+            <div class="submenu" *ngIf="skills">
+                <a mat-list-item routerLink="/professions">
+                    <mat-icon mat-list-icon>school</mat-icon>
+                    Professions
+                </a>
+                <a mat-list-item routerLink="/qualifications">
+                    <mat-icon mat-list-icon>school</mat-icon>
+                    Qualifications
+                </a>
+                <a mat-list-item routerLink="/schools">
+                    <mat-icon mat-list-icon>school</mat-icon>
+                    Schools
+                </a>
+            </div>
+            <mat-divider></mat-divider>
+            <a mat-list-item (click)="toggleHealth()">
+                <mat-icon mat-list-icon>expand_more</mat-icon>
+                Health
+                <mat-icon class="submenu-arrow" *ngIf="health">expand_less</mat-icon>
+                <mat-icon class="submenu-arrow" *ngIf="!health">expand_more</mat-icon>
+            </a>
+            <div class="submenu" *ngIf="health">
+                <a mat-list-item routerLink="/diseases">
+                    <mat-icon mat-list-icon>local_hospital</mat-icon>
+                    Diseases
+                </a>
+                <a mat-list-item routerLink="/disabilities">
+                    <mat-icon mat-list-icon>local_hospital</mat-icon>
+                    Disabilities
+                </a>
+                <a mat-list-item routerLink="/medicines">
+                    <mat-icon mat-list-icon>local_hospital</mat-icon>
+                    Medicines
+                </a>
+            </div>
+            <mat-divider></mat-divider>
+            <a mat-list-item (click)="toggleConstructions()">
+                <mat-icon mat-list-icon>expand_more</mat-icon>
+                Others
+                <mat-icon class="submenu-arrow" *ngIf="health">expand_less</mat-icon>
+                <mat-icon class="submenu-arrow" *ngIf="!health">expand_more</mat-icon>
+            </a>
+            <div class="submenu" *ngIf="constructions">
+                <a mat-list-item routerLink="/supports">
+                    <mat-icon mat-list-icon>bar_chart</mat-icon>
+                    Supports
+                </a>
+                <a mat-list-item routerLink="/gases">
+                    <mat-icon mat-list-icon>bar_chart</mat-icon>
+                    Gas Cylinders
+                </a>
+                <a mat-list-item routerLink="/genders">
+                    <mat-icon mat-list-icon>bar_chart</mat-icon>
+                    Genders
+                </a>
+                <a mat-list-item routerLink="/statuses">
+                    <mat-icon mat-list-icon>bar_chart</mat-icon>
+                    Statuses
+                </a>
+                <a mat-list-item routerLink="/nationalities">
+                    <mat-icon mat-list-icon>bar_chart</mat-icon>
+                    Nationalities
+                </a>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="title-card">
+            <h1>System Bas</h1>
+        </div>
+
+        <div class="container" style="margin-left: 50px; margin-top: 30px;">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
