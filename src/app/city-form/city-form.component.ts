@@ -16,6 +16,10 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  // dropdownList: {item_id: number, item_text: string}[] = [];
+  dropdownList: State[] = [];
+  selectedItems: {item_id: number, item_text: string}[] = [];
+  dropdownSettings:IDropdownSettings = {};
 
   states$: Observable<State[]> = this.stateService.getAll("/api/states");
 
@@ -25,10 +29,51 @@ export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
     state: new FormControl(),
   });
 
-  ngOnInit() {
-
-    this.editForm();
+  ngAfterViewInit() {
+        this.states$.subscribe(
+      (data) => {
+        this.dropdownList = data
+        console.log(this.dropdownList)
+      },
+      (error) => this.notifier.notify("error", error.message)
+    );
   }
+
+  ngOnInit() {
+    
+console.log(this.data.ops)
+    if (this.data.ops === "edit")
+      this.editForm();
+
+    // this.dropdownList = [
+    //   { item_id: 1, item_text: 'Mumbai' },
+    //   { item_id: 2, item_text: 'Bangaluru' },
+    //   { item_id: 3, item_text: 'Pune' },
+    //   { item_id: 4, item_text: 'Navsari' },
+    //   { item_id: 5, item_text: 'New Delhi' }
+    // ];
+    this.selectedItems = [
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' }
+    ];
+    this.dropdownSettings = {
+      singleSelection: true,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+  }
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
+
 
   constructor(
     private stateService: GenericService<State>,
@@ -43,15 +88,13 @@ export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   editForm() {
-    if (this.data.ops === "edit") {
-      this.form.patchValue(
-        {
-          id: this.data.item.id,
-          name: this.data.item.name,
-          state: this.data.item.state
-        }
-      );
-    }
+    this.form.patchValue(
+      {
+        id: this.data.item.id,
+        name: this.data.item.name,
+        state: this.data.item.state
+      }
+    );
   }
 
   isCreate() {
@@ -81,9 +124,6 @@ export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   cancel() {
     this.dialogRef.close(false);
-  }
-
-  ngAfterViewInit() {
   }
 
   compareState(op1: State, op2: State) {

@@ -12,6 +12,12 @@ import { noop } from 'rxjs';
 })
 export class DropdownSearchComponent implements OnInit {
 
+  form: FormGroup = new FormGroup({
+    id: new FormControl(),
+    name: new FormControl('', Validators.required),
+    state: new FormControl(),
+  });
+
   dropdownList: { item_id: number, item_text: string }[] = [];
   selectedItems: { item_id: number, item_text: string }[] = [];
   dropdownSettings:IDropdownSettings = {};
@@ -43,5 +49,9 @@ export class DropdownSearchComponent implements OnInit {
   }
   onSelectAll(items: any) {
     console.log(items);
+  }
+
+  onSubmit() {
+
   }
 }

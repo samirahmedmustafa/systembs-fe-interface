@@ -9,14 +9,18 @@
                 <mat-error *ngIf="form.get('name')?.invalid">Please enter a name.</mat-error>
             </mat-form-field>
 
-            <mat-form-field>
+            <!-- <mat-form-field>
                 <mat-select formControlName="state" placeholder="state" #singleSelect [compareWith]="compareState">
                     <mat-option *ngFor="let state of states$ | async" [value]="state">
                         {{state.name}}
                     </mat-option>
                 </mat-select>
                 <mat-error *ngIf="form.get('state')?.invalid">Please enter a state.</mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
+            <ng-multiselect-dropdown style="width: 300px" [placeholder]="'custom placeholder'" #singleSelect [settings]="dropdownSettings" [data]="dropdownList" formControlName="selectedItems" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+
+            <mat-error *ngIf="form.get('state')?.invalid">Please enter a state.</mat-error>
 
             <mat-dialog-actions>
                 <button mat-button mat-dialog-close type="button">Cancel</button>
