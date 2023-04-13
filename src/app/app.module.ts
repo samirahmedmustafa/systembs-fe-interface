@@ -50,6 +50,9 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DropdownSearchComponent } from './dropdown-search/dropdown-search.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { GenderFormComponent } from './gender-form/gender-form.component';
+import { ProfessionFormComponent } from './profession-form/profession-form.component';
+import { StatusFormComponent } from './status-form/status-form.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -117,6 +120,7 @@ const notifierDefaultOptions: NotifierOptions = {
     StateComponent,
     SupportComponent,
     StatusComponent,
+    StatusFormComponent,
     CityFormComponent,
     BuildingTypeFormComponent,
     CitizenFormComponent,
@@ -134,7 +138,9 @@ const notifierDefaultOptions: NotifierOptions = {
     SupportFormComponent,
     ConfirmDialogComponent,
     StateFormComponent,
-    DropdownSearchComponent
+    DropdownSearchComponent,
+    GenderFormComponent,
+    ProfessionFormComponent
   ],
   imports: [
     BrowserModule,

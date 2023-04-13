@@ -25,6 +25,7 @@ export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
     name: new FormControl('', Validators.required),
     state: new FormControl(),
   });
+  resource: string = "/api/cities";
 
   ngAfterViewInit() {
     this.states$.subscribe(
@@ -75,7 +76,7 @@ export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   update() {
-    this.service.update("/api/cities", this.form.value.id, this.form.value).subscribe(
+    this.service.update(this.resource, this.form.value.id, this.form.value).subscribe(
       (data: City) => {
         data = data
         this.dialogRef.close(data);
@@ -85,7 +86,7 @@ export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   create() {
-    this.service.create("/api/cities", this.form.value).subscribe(
+    this.service.create(this.resource, this.form.value).subscribe(
       (data: City) => {
         data = data
         this.dialogRef.close(data);
@@ -98,8 +99,8 @@ export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dialogRef.close(false);
   }
 
-  compareState(op1: State, op2: State) {
-    return op1.name === op2.name;
-  }
+  // compareState(op1: State, op2: State) {
+  //   return op1.name === op2.name;
+  // }
 
 }

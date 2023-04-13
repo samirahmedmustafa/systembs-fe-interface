@@ -1,1 +1,131 @@
-<p>citizen works!</p>
+<div>
+    <button mat-raised-button color="primary" (click)="create()">New citizen</button>
+</div>
+
+<mat-form-field style="margin-top: 10px">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="phoneNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone No </th>
+            <td mat-cell *matCellDef="let row"> {{row.phoneNo}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="dateOfBirth">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> dateOfBirth </th>
+            <td mat-cell *matCellDef="let row"> {{row.dateOfBirth}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="nationalNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> nationalNo </th>
+            <td mat-cell *matCellDef="let row"> {{row.nationalNo}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="isDisabled">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> isDisabled </th>
+            <td mat-cell *matCellDef="let row"> {{row.isDisabled}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="skills">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> skills </th>
+            <td mat-cell *matCellDef="let row"> {{row.skills}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="isSupportEligible">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> isSupportEligible </th>
+            <td mat-cell *matCellDef="let row"> {{row.isSupportEligible}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="isGainingSupport">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> isGainingSupport </th>
+            <td mat-cell *matCellDef="let row"> {{row.isGainingSupport}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="isDeceased">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> isDeceased </th>
+            <td mat-cell *matCellDef="let row"> {{row.isDeceased}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="buildAddressDetails">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> buildAddressDetails </th>
+            <td mat-cell *matCellDef="let row"> {{row.buildAddressDetails}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> location </th>
+            <td mat-cell *matCellDef="let row"> {{row.location}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="nationality">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> nationality </th>
+            <td mat-cell *matCellDef="let row"> {{row.nationality}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="qualification">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> qualification </th>
+            <td mat-cell *matCellDef="let row"> {{row.qualification}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> gender </th>
+            <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="supports">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> supports </th>
+            <td mat-cell *matCellDef="let row"> {{row.supports}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="medicines">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> medicines </th>
+            <td mat-cell *matCellDef="let row"> {{row.medicines}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="edit(row)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-icon-button matTooltip="Click to delete" class="iconbutton" color="primary" (click)="delete(row)" color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+<div style="margin-left: 50px">
+    <notifier-container></notifier-container>
+</div>

@@ -8,15 +8,17 @@ import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Disability } from '../disability/disability.component';
 import { Disease } from '../disease/disease.component';
-import { Gas } from '../gas/gas.component';
+import { Medicine } from '../medicine/medicine.component';
+import { School } from '../school/school.component';
+import { Profession } from '../profession/profession.component';
 
 @Component({
-  selector: 'app-gas-form',
-  templateUrl: './gas-form.component.html',
-  styleUrls: ['./gas-form.component.css']
+  selector: 'app-profession-form',
+  templateUrl: './profession-form.component.html',
+  styleUrls: ['./profession-form.component.css']
 })
-export class GasFormComponent {
-  resource: string = "/api/gases"
+export class ProfessionFormComponent {
+  resource: string = "/api/professions"
 
   form: FormGroup = new FormGroup({
     id: new FormControl(),
@@ -32,8 +34,8 @@ export class GasFormComponent {
   }
 
   constructor(
-    private service: GenericService<Gas>,
-    public dialogRef: MatDialogRef<GasFormComponent>,
+    private service: GenericService<Profession>,
+    public dialogRef: MatDialogRef<ProfessionFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private notifier: NotifierService
   ) { }

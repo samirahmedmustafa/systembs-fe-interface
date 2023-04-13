@@ -1,17 +1,13 @@
 <div>
-    <div>Enter Locality</div>
+    <div>Enter profession</div>
     <div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
             <mat-form-field appearance="fill">
                 <mat-label>Name</mat-label>
-                <input matInput formControlName="name" required placeholder="e.g karrari">
+                <input matInput formControlName="name" required placeholder="e.g plumber">
                 <mat-error *ngIf="form.get('name')?.invalid">Please enter a name.</mat-error>
             </mat-form-field>
-
-            <ng-select [items]="dropdownList" bindLabel="name" placeholder="Select city" formControlName="city">
-            </ng-select>
-            <mat-error *ngIf="form.get('city')?.invalid">Please enter a city.</mat-error>
 
             <mat-dialog-actions>
                 <button mat-button mat-dialog-close type="button">Cancel</button>

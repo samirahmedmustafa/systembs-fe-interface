@@ -1,1 +1,28 @@
-<p>citizen-form works!</p>
+<div>
+    <div>Enter citizen</div>
+    <div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" required placeholder="e.g Khartoum">
+                <mat-error *ngIf="form.get('name')?.invalid">Please enter a name.</mat-error>
+            </mat-form-field>
+
+            <ng-select [items]="nationalitiesList" bindLabel="name" placeholder="Select nationality" formControlName="nationality">
+            </ng-select>
+            <mat-error *ngIf="form.get('nationality')?.invalid">Please enter a nationality.</mat-error>
+
+            <!-- <mat-form-field appearance="fill">
+                <mat-label>isSupportEligible</mat-label>
+                <mat-checkbox formControlName="isSupportEligible" class="example-margin">isSupportEligible?</mat-checkbox>
+                <mat-error *ngIf="form.get('isSupportEligible')?.invalid">Please enter a isSupportEligible.</mat-error>
+            </mat-form-field> -->
+
+            <mat-dialog-actions>
+                <button mat-button mat-dialog-close type="button">Cancel</button>
+                <button mat-button type="submit" [disabled]="form.invalid" cdkFocusInitial>Save</button>
+            </mat-dialog-actions>
+        </form>
+    </div>
+</div>

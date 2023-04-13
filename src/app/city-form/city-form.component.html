@@ -13,9 +13,6 @@
             </ng-select>
             <mat-error *ngIf="form.get('state')?.invalid">Please enter a state.</mat-error>
 
-
-            <mat-error *ngIf="form.get('state')?.invalid">Please enter a state.</mat-error>
-
             <mat-dialog-actions>
                 <button mat-button mat-dialog-close type="button">Cancel</button>
                 <button mat-button type="submit" [disabled]="form.invalid" cdkFocusInitial>Save</button>

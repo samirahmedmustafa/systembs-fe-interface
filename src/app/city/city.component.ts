@@ -14,6 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./city.component.css']
 })
 export class CityComponent {
+
   displayedColumns: string[] = ['id', 'name', "state", 'edit', 'delete'];
   dataSource: MatTableDataSource<State>;
 
@@ -21,6 +22,7 @@ export class CityComponent {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
+  resource: string = "/api/cities";
 
   constructor(
     private service: GenericService<City>,
@@ -38,7 +40,7 @@ export class CityComponent {
     dialogRef.afterClosed().subscribe((confirm: any) => {
 
       if (confirm) {
-        this.service.delete("/api/cities", item.id).subscribe(
+        this.service.delete(this.resource, item.id).subscribe(
           (data: any) => {
             this.service.notifier.notify("error", `item ${item.name} is deleted`);
             this.getAll();
@@ -52,9 +54,9 @@ export class CityComponent {
 
   edit(item: any): void {
 
-    this.service.get("/api/cities", item.id).subscribe(
-      (data: City) => {
-        
+    this.service.get(this.resource, item.id).subscribe(
+      (data: any) => {
+
         const dialogRef = this.dialog.open(CityFormComponent, {
           width: '600px',
           height: '400px',
@@ -84,7 +86,7 @@ export class CityComponent {
     const dialogRef = this.dialog.open(CityFormComponent, {
       width: '600px',
       height: '400px',
-  data: { item: "", ops: "create" },
+      data: { item: "", ops: "create" },
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -106,7 +108,7 @@ export class CityComponent {
   }
 
   getAll(): void {
-    this.service.getAll("/api/cities").subscribe(
+    this.service.getAll(this.resource).subscribe(
       (data: any) => {
         this.dataSource.data = data;
       },

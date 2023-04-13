@@ -6,17 +6,17 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotifierService } from 'angular-notifier';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Disability } from '../disability/disability.component';
-import { Disease } from '../disease/disease.component';
-import { Gas } from '../gas/gas.component';
+import { Condition } from '../condition/condition.component';
+import { BuildingType } from '../building-type/building-type.component';
+import { Gender } from '../gender/gender.component';
 
 @Component({
-  selector: 'app-gas-form',
-  templateUrl: './gas-form.component.html',
-  styleUrls: ['./gas-form.component.css']
+  selector: 'app-gender-form',
+  templateUrl: './gender-form.component.html',
+  styleUrls: ['./gender-form.component.css']
 })
-export class GasFormComponent {
-  resource: string = "/api/gases"
+export class GenderFormComponent {
+  resource: string = "/api/genders"
 
   form: FormGroup = new FormGroup({
     id: new FormControl(),
@@ -27,13 +27,14 @@ export class GasFormComponent {
   }
 
   ngOnInit() {
+
     if (this.data.ops === "edit")
       this.editForm();
   }
 
   constructor(
-    private service: GenericService<Gas>,
-    public dialogRef: MatDialogRef<GasFormComponent>,
+    private service: GenericService<Gender>,
+    public dialogRef: MatDialogRef<GenderFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private notifier: NotifierService
   ) { }

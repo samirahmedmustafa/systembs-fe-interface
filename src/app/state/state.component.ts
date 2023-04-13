@@ -22,6 +22,7 @@ export class StateComponent implements OnInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
+  resource: string = "/api/states";
 
   constructor(
     private service: GenericService<State>,
@@ -39,7 +40,7 @@ export class StateComponent implements OnInit {
     dialogRef.afterClosed().subscribe(confirm => {
 
       if (confirm) {
-        this.service.delete("/api/states", item.id).subscribe(
+        this.service.delete(this.resource, item.id).subscribe(
           (data) => {
             this.service.notifier.notify("error", `item ${item.name} is deleted`);
             this.getAll();
@@ -53,11 +54,11 @@ export class StateComponent implements OnInit {
 
   edit(item: any): void {
 
-    this.service.get("/api/states", item.id).subscribe(
+    this.service.get(this.resource, item.id).subscribe(
 
       data => {
         const dialogRef = this.dialog.open(StateFormComponent, {
-          data: { state: data, ops: "edit" },
+          data: { item: data, ops: "edit" },
         });
 
         dialogRef.afterClosed().subscribe(result => {
@@ -83,7 +84,7 @@ export class StateComponent implements OnInit {
 
     const dialogRef = this.dialog.open(StateFormComponent, {
       width: '400px',
-      data: { state: "", ops: "create" },
+      data: { item: "", ops: "create" },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -105,7 +106,7 @@ export class StateComponent implements OnInit {
   }
 
   getAll(): void {
-    this.service.getAll("/api/states").subscribe(
+    this.service.getAll(this.resource).subscribe(
       data => {
         this.dataSource.data = data;
       },
@@ -128,8 +129,6 @@ export class StateComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-
 }
 
 export interface State {

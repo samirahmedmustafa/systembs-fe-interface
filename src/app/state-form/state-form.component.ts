@@ -57,8 +57,8 @@ export class StateFormComponent {
     if (this.data.ops === "edit") {
       this.form.patchValue(
         {
-          id: this.data.state.id,
-          name: this.data.state.name
+          id: this.data.item.id,
+          name: this.data.item.name
         }
       );
     }
