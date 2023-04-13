@@ -62,7 +62,6 @@ export class CityComponent {
         });
 
         dialogRef.afterClosed().subscribe((result: any) => {
-          console.log("edit: ", result !== undefined)
 
           if (result !== "" && result !== undefined) {
             if (result?.error) {
@@ -130,8 +129,6 @@ export class CityComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-
-
 }
 
 export interface City {

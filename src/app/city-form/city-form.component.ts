@@ -16,10 +16,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  // dropdownList: {item_id: number, item_text: string}[] = [];
   dropdownList: State[] = [];
-  selectedItems: {item_id: number, item_text: string}[] = [];
-  dropdownSettings:IDropdownSettings = {};
 
   states$: Observable<State[]> = this.stateService.getAll("/api/states");
 
@@ -30,50 +27,17 @@ export class CityFormComponent implements OnInit, AfterViewInit, OnDestroy {
   });
 
   ngAfterViewInit() {
-        this.states$.subscribe(
-      (data) => {
-        this.dropdownList = data
-        console.log(this.dropdownList)
-      },
+    this.states$.subscribe(
+      (data) => this.dropdownList = data,
       (error) => this.notifier.notify("error", error.message)
     );
   }
 
   ngOnInit() {
-    
-console.log(this.data.ops)
+
     if (this.data.ops === "edit")
       this.editForm();
-
-    // this.dropdownList = [
-    //   { item_id: 1, item_text: 'Mumbai' },
-    //   { item_id: 2, item_text: 'Bangaluru' },
-    //   { item_id: 3, item_text: 'Pune' },
-    //   { item_id: 4, item_text: 'Navsari' },
-    //   { item_id: 5, item_text: 'New Delhi' }
-    // ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
-    ];
-    this.dropdownSettings = {
-      singleSelection: true,
-      idField: 'id',
-      textField: 'name',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
   }
-
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
-
 
   constructor(
     private stateService: GenericService<State>,
@@ -104,22 +68,30 @@ console.log(this.data.ops)
   onSubmit() {
 
     if (this.isCreate()) {
-      this.service.create("/api/cities", this.form.value).subscribe(
-        (data: City) => {
-          data = data
-          this.dialogRef.close(data);
-        },
-        (error) => this.dialogRef.close(error)
-      );
+      this.create();
     } else {
-      this.service.update("/api/cities", this.form.value.id, this.form.value).subscribe(
-        (data: City) => {
-          data = data
-          this.dialogRef.close(data);
-        },
-        (error) => this.dialogRef.close(error)
-      );
+      this.update();
     }
+  }
+
+  update() {
+    this.service.update("/api/cities", this.form.value.id, this.form.value).subscribe(
+      (data: City) => {
+        data = data
+        this.dialogRef.close(data);
+      },
+      (error) => this.dialogRef.close(error)
+    );
+  }
+
+  create() {
+    this.service.create("/api/cities", this.form.value).subscribe(
+      (data: City) => {
+        data = data
+        this.dialogRef.close(data);
+      },
+      (error) => this.dialogRef.close(error)
+    );
   }
 
   cancel() {

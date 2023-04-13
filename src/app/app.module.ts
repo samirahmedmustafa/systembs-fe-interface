@@ -49,7 +49,7 @@ import { StateFormComponent } from './state-form/state-form.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DropdownSearchComponent } from './dropdown-search/dropdown-search.component';
-import { FilterPipe } from './filter.pipe';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -134,8 +134,7 @@ const notifierDefaultOptions: NotifierOptions = {
     SupportFormComponent,
     ConfirmDialogComponent,
     StateFormComponent,
-    DropdownSearchComponent,
-    FilterPipe
+    DropdownSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -147,8 +146,8 @@ const notifierDefaultOptions: NotifierOptions = {
     HttpClientModule,
     NgxMatSelectSearchModule,
     BrowserAnimationsModule,
-    NgMultiSelectDropDownModule.forRoot()
-
+    NgMultiSelectDropDownModule.forRoot(),
+    NgSelectModule
   ],
   providers: [
     {
