@@ -13,11 +13,7 @@
             </ng-select>
             <mat-error *ngIf="form.get('nationality')?.invalid">Please enter a nationality.</mat-error>
 
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>isSupportEligible</mat-label>
-                <mat-checkbox formControlName="isSupportEligible" class="example-margin">isSupportEligible?</mat-checkbox>
-                <mat-error *ngIf="form.get('isSupportEligible')?.invalid">Please enter a isSupportEligible.</mat-error>
-            </mat-form-field> -->
+            <mat-checkbox formControlName="isGainingSupport">Pepperoni</mat-checkbox>
 
             <mat-dialog-actions>
                 <button mat-button mat-dialog-close type="button">Cancel</button>
@@ -26,3 +22,8 @@
         </form>
     </div>
 </div>
+
+<section class="example-section" [formGroup]="form">
+    <h4>You chose:</h4>
+    {{form.value | json}}
+</section>

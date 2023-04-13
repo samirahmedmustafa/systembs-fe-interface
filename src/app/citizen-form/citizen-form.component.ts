@@ -35,14 +35,12 @@ export class CitizenFormComponent implements AfterViewInit {
   qualificationsList: any[] = [];
   locationsList: any[] = [];
   professionsList: any[] = [];
-  dropdownList: any[] = [];
 
   nationalities$: Observable<any[]> = this.genderService.getAll("/api/nationalities");
   genders$: Observable<any[]> = this.genderService.getAll("/api/genders");
   professions$: Observable<any[]> = this.professionService.getAll("/api/professions");
   medicines$: Observable<any[]> = this.medicineService.getAll("/api/medicines");
   diseases$: Observable<any[]> = this.diseaseService.getAll("/api/diseases");
-  // nationalities$: Observable<any[]> = this.nationalityService.getAll("/api/nationalities");
   gases$: Observable<any[]> = this.gasService.getAll("/api/gases");
   qualifications$: Observable<any[]> = this.qualificationService.getAll("/api/qualifications");
   supports$: Observable<any[]> = this.supportService.getAll("/api/supports");
@@ -53,14 +51,13 @@ export class CitizenFormComponent implements AfterViewInit {
   form: FormGroup = new FormGroup({
     id: new FormControl(),
     name: new FormControl('', Validators.required),
-    state: new FormControl('', Validators.required),
     phoneNo: new FormControl(),
     dateOfBirth: new FormControl(),
     nationalNo: new FormControl(),
     isDisabled: new FormControl(),
     skills: new FormControl(),
-    isSupportEligible: new FormControl(),
-    isGainingSupport: new FormControl(),
+    isSupportEligible: new FormControl(false),
+    isGainingSupport: new FormControl(false),
     isDeceased: new FormControl(),
     buildAddressDetails: new FormControl(),
     location: new FormControl(),
@@ -85,7 +82,7 @@ export class CitizenFormComponent implements AfterViewInit {
     this.professions$.subscribe((data) => this.professionsList = data,(error) => this.notifier.notify("error", error.message));
     this.medicines$.subscribe((data) => this.medicinesList = data,(error) => this.notifier.notify("error", error.message));
     this.diseases$.subscribe((data) => this.diseasesList = data,(error) => this.notifier.notify("error", error.message));
-    this.nationalities$.subscribe((data) => {this.nationalitiesList = data; console.log("nationalities: ", this.nationalitiesList)},(error) => this.notifier.notify("error", error.message));
+    this.nationalities$.subscribe((data) => this.nationalitiesList = data,(error) => this.notifier.notify("error", error.message));
     this.qualifications$.subscribe((data) => this.qualificationsList = data,(error) => this.notifier.notify("error", error.message));
     this.disabilities$.subscribe((data) => this.disabilitiesList = data,(error) => this.notifier.notify("error", error.message));
     this.locations$.subscribe((data) => this.locationsList = data,(error) => this.notifier.notify("error", error.message));
@@ -145,7 +142,7 @@ export class CitizenFormComponent implements AfterViewInit {
 
   update() {
     this.service.update(this.resource, this.form.value.id, this.form.value).subscribe(
-      (data: City) => {
+      (data: any) => {
         data = data
         this.dialogRef.close(data);
       },
@@ -155,7 +152,7 @@ export class CitizenFormComponent implements AfterViewInit {
 
   create() {
     this.service.create(this.resource, this.form.value).subscribe(
-      (data: City) => {
+      (data: any) => {
         data = data
         this.dialogRef.close(data);
       },
