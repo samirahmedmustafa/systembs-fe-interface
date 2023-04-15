@@ -9,9 +9,9 @@
                 <mat-error *ngIf="form.get('name')?.invalid">Please enter a name.</mat-error>
             </mat-form-field>
 
-            <ng-select [items]="dropdownList" bindLabel="name" placeholder="Select state" formControlName="state">
+            <ng-select [items]="dropdownList" bindLabel="name" placeholder="Select state" formControlName="state" required>
             </ng-select>
-            <mat-error *ngIf="form.get('state')?.invalid">Please enter a state.</mat-error>
+            <mat-error *ngIf="form.get('state')?.touched && form.get('state')?.invalid">Please enter a state.</mat-error>
 
             <mat-dialog-actions>
                 <button mat-button mat-dialog-close type="button">Cancel</button>

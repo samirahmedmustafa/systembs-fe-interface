@@ -9,11 +9,77 @@
                 <mat-error *ngIf="form.get('name')?.invalid">Please enter a name.</mat-error>
             </mat-form-field>
 
-            <ng-select [items]="nationalitiesList" bindLabel="name" placeholder="Select nationality" formControlName="nationality">
-            </ng-select>
-            <mat-error *ngIf="form.get('nationality')?.invalid">Please enter a nationality.</mat-error>
+            <mat-form-field appearance="fill">
+                <mat-label>Phone No.</mat-label>
+                <input matInput formControlName="phoneNo" required placeholder="e.g 2134123412">
+                <mat-error *ngIf="form.get('phoneNo')?.invalid">Please enter a phoneNo.</mat-error>
+            </mat-form-field>
 
-            <mat-checkbox formControlName="isGainingSupport">Pepperoni</mat-checkbox>
+            <mat-form-field appearance="fill">
+                <mat-label>Nationality No.</mat-label>
+                <input matInput formControlName="nationalNo" required placeholder="e.g 2134123412">
+                <mat-error *ngIf="form.get('nationalNo')?.touched && form.get('nationalNo')?.invalid">Please enter a national No.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>skills</mat-label>
+                <textarea matInput formControlName="skills" placeholder="e.g skills"></textarea>
+                <mat-error *ngIf="form.get('skills')?.invalid">Please enter a skills.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Building Address Details</mat-label>
+                <textarea matInput formControlName="buildAddressDetails" placeholder="e.g buildAddressDetails"></textarea>
+                <mat-error *ngIf="form.get('buildAddressDetails')?.invalid">Please enter a buildAddressDetails.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Choose a date of birth</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <ng-select style="margin: 10px;" [items]="locationsList" bindLabel="name" placeholder="Select location" formControlName="location">
+                <!-- <mat-error *ngIf="form.get('location')?.touched && form.get('location')?.invalid">Please enter a location.</mat-error> -->
+            </ng-select>
+
+            <ng-select style="margin: 10px;" [items]="nationalitiesList" bindLabel="name" placeholder="Select nationality" formControlName="nationality">
+                <mat-error *ngIf="form.get('nationality')?.invalid">Please enter a nationality.</mat-error>
+            </ng-select>
+
+            <ng-select style="margin: 10px;" [items]="qualificationsList" bindLabel="name" placeholder="Select qualification" formControlName="qualification">
+                <mat-error *ngIf="form.get('qualification')?.invalid">Please enter a qualification.</mat-error>
+            </ng-select>
+
+            <ng-select style="margin: 10px;" [items]="gendersList" bindLabel="name" placeholder="Select gender" formControlName="gender">
+                <mat-error *ngIf="form.get('gender')?.invalid">Please enter a gender.</mat-error>
+            </ng-select>
+
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="supportsList" formControlName="supports">
+            </ng-multiselect-dropdown>
+
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="medicinesList" formControlName="medicines">
+            </ng-multiselect-dropdown>
+
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="diseasesList" formControlName="diseases">
+            </ng-multiselect-dropdown>
+
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="disabilitiesList" formControlName="disabilities">
+            </ng-multiselect-dropdown>
+
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="professionsList" formControlName="professions">
+            </ng-multiselect-dropdown>
+
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="gasesList" formControlName="gases">
+            </ng-multiselect-dropdown>
+
+            <mat-checkbox formControlName="isGainingSupport">isGainingSupport</mat-checkbox>
+            <mat-checkbox formControlName="isDeceased">isDeceased</mat-checkbox>
+            <mat-checkbox formControlName="isDisabled">isDisabled</mat-checkbox>
 
             <mat-dialog-actions>
                 <button mat-button mat-dialog-close type="button">Cancel</button>
@@ -23,7 +89,4 @@
     </div>
 </div>
 
-<section class="example-section" [formGroup]="form">
-    <h4>You chose:</h4>
-    {{form.value | json}}
-</section>
+<div> {{form.value | json}}</div>

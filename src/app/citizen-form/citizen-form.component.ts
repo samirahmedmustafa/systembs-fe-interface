@@ -16,6 +16,7 @@ import { Profession } from '../profession/profession.component';
 import { Gas } from '../gas/gas.component';
 import { Nationality } from '../nationality/nationality.component';
 import { School } from '../school/school.component';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-citizen-form',
@@ -23,7 +24,9 @@ import { School } from '../school/school.component';
   styleUrls: ['./citizen-form.component.css']
 })
 export class CitizenFormComponent implements AfterViewInit {
-  
+
+  dropdownSettings:IDropdownSettings = {};
+
   schoolsList: any[] = [];
   gendersList: any[] = [];
   gasesList: any[] = [];
@@ -75,6 +78,17 @@ export class CitizenFormComponent implements AfterViewInit {
   resource: string = "/api/citizens";
 
   ngAfterViewInit() {
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
     this.nationalities$.subscribe((data) => this.nationalitiesList = data,(error) => this.notifier.notify("error", error.message));
     this.schools$.subscribe((data) => this.schoolsList = data,(error) => this.notifier.notify("error", error.message));
     this.gases$.subscribe((data) => this.gasesList = data,(error) => this.notifier.notify("error", error.message));

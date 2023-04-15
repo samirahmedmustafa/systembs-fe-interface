@@ -74,17 +74,17 @@
         <!-- Name Column -->
         <ng-container matColumnDef="nationality">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> nationality </th>
-            <td mat-cell *matCellDef="let row"> {{row.nationality}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.nationality.name}} </td>
         </ng-container>
         <!-- Name Column -->
         <ng-container matColumnDef="qualification">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> qualification </th>
-            <td mat-cell *matCellDef="let row"> {{row.qualification}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.qualification.name}} </td>
         </ng-container>
         <!-- Name Column -->
         <ng-container matColumnDef="gender">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> gender </th>
-            <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.gender.name}} </td>
         </ng-container>
         <!-- Name Column -->
         <ng-container matColumnDef="supports">

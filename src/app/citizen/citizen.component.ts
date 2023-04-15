@@ -95,7 +95,7 @@ export class CitizenComponent {
   create(): void {
 
     const dialogRef = this.dialog.open(CitizenFormComponent, {
-      width: '600px',
+      width: '800px',
       height: '800px',
       data: { item: "", ops: "create" },
     });
@@ -145,7 +145,6 @@ export class CitizenComponent {
 }
 
 export interface Citizen {
-  state: State;
   id: number;
   name: string;
   phoneNo: string;
