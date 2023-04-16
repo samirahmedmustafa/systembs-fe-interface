@@ -1,11 +1,10 @@
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GenericService } from '../service/generic.service';
 import { City } from '../city/city.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotifierService } from 'angular-notifier';
 import { Observable, ReplaySubject, Subject, take, takeUntil } from 'rxjs';
-import { State } from '../state/state.component';
 import { Gender } from '../gender/gender.component';
 import { Support } from '../support/support.component';
 import { Qualification } from '../qualification/qualification.component';
@@ -14,9 +13,10 @@ import { Disease } from '../disease/disease.component';
 import { Disability } from '../disability/disability.component';
 import { Profession } from '../profession/profession.component';
 import { Gas } from '../gas/gas.component';
-import { Nationality } from '../nationality/nationality.component';
 import { School } from '../school/school.component';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Location } from '../location/location.component';
+import { Citizen } from '../citizen/citizen.component';
 
 @Component({
   selector: 'app-citizen-form',
@@ -54,20 +54,20 @@ export class CitizenFormComponent implements AfterViewInit {
   form: FormGroup = new FormGroup({
     id: new FormControl(),
     name: new FormControl('', Validators.required),
-    phoneNo: new FormControl(),
-    dateOfBirth: new FormControl(),
-    nationalNo: new FormControl(),
+    phoneNo: new FormControl('', Validators.required),
+    dateOfBirth: new FormControl('', Validators.required),
+    nationalNo: new FormControl('', Validators.required),
     isDisabled: new FormControl(),
     skills: new FormControl(),
-    isSupportEligible: new FormControl(false),
-    isGainingSupport: new FormControl(false),
+    isSupportEligible: new FormControl(),
+    isGainingSupport: new FormControl(),
     isDeceased: new FormControl(),
     buildAddressDetails: new FormControl(),
     location: new FormControl(),
-    nationality: new FormControl(),
+    nationality: new FormControl(null, Validators.required),
     school: new FormControl(),
-    qualification: new FormControl(),
-    gender: new FormControl(),
+    qualification: new FormControl(null, Validators.required),
+    gender: new FormControl(null, Validators.required),
     supports: new FormControl(),
     medicines: new FormControl(),
     diseases: new FormControl(),
@@ -121,7 +121,7 @@ export class CitizenFormComponent implements AfterViewInit {
     private gasService: GenericService<Gas>,
     private schoolService: GenericService<School>,
     private locationService: GenericService<Location>,
-    private service: GenericService<City>,
+    private service: GenericService<Citizen>,
     public dialogRef: MatDialogRef<CitizenFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private notifier: NotifierService
@@ -136,7 +136,25 @@ export class CitizenFormComponent implements AfterViewInit {
       {
         id: this.data.item.id,
         name: this.data.item.name,
-        state: this.data.item.state
+        phoneNo: this.data.item.phoneNo,
+        dateOfBirth: this.data.item.dateOfBirth,
+        nationalNo: this.data.item.nationalNo,
+        isDisabled: this.data.item.isDisabled,
+        skills: this.data.item.skills,
+        isSupportEligible: this.data.item.isSupportEligible,
+        isGainingSupport: this.data.item.isGainingSupport,
+        isDeceased: this.data.item.isDeceased,
+        nationality: this.data.item.nationality,
+        buildAddressDetails: this.data.item.buildAddressDetails,
+        location: this.data.item.location,
+        qualification: this.data.item.qualification,
+        gender: this.data.item.gender,
+        supports: this.data.item.supports,
+        medicines: this.data.item.medicines,
+        diseases: this.data.item.diseases,
+        disabilities: this.data.item.disabilities,
+        professions: this.data.item.professions,
+        gases: this.data.item.gases,
       }
     );
   }
@@ -177,9 +195,5 @@ export class CitizenFormComponent implements AfterViewInit {
   cancel() {
     this.dialogRef.close(false);
   }
-
-  // compareState(op1: State, op2: State) {
-  //   return op1.name === op2.name;
-  // }
 
 }

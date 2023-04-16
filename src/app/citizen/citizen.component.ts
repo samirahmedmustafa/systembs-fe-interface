@@ -10,8 +10,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Nationality } from '../nationality/nationality.component';
 import { Qualification } from '../qualification/qualification.component';
 import { Gender } from '../gender/gender.component';
-import { City } from '../city/city.component';
 import { CitizenFormComponent } from '../citizen-form/citizen-form.component';
+import { School } from '../school/school.component';
 
 @Component({
   selector: 'app-citizen',
@@ -121,12 +121,45 @@ export class CitizenComponent {
   getAll(): void {
     this.service.getAll(this.resource).subscribe(
       (data: any) => {
-        this.dataSource.data = data;
+        const converted = this.convertData(data);
+        console.log(converted);
+        this.dataSource.data = converted;
       },
       (error: any) => {
         this.service.notifier.notify("alert", error.message)
       }
     );
+  }
+
+  convertData(data: any[][]): Citizen[] {
+
+    return data.map((item) => {
+      return {
+        id: item[0],
+        name: item[1],
+        phoneNo: item[9],
+        dateOfBirth: item[3],
+        nationalNo: item[8],
+        isDisabled: item[5],
+        skills: item[10],
+        isSupportEligible: item[7],
+        isGainingSupport: item[6],
+        isDeceased: item[4],
+        buildAddressDetails: item[2],
+        location: item[12],
+        nationality: item[13],
+        qualification: item[14],
+        school: item[15],
+        gender: item[11],
+        supports: item[21],
+        medicines: item[17],
+        diseases: item[18],
+        disabilities: item[20],
+        professions: item[19],
+        gases: item[16],
+      };
+    });
+
   }
 
   ngAfterViewInit() {
@@ -159,6 +192,7 @@ export interface Citizen {
   location: Location;
   nationality: Nationality;
   qualification: Qualification;
+  school: School;
   gender: Gender;
   supports: number;
   medicines: number;
