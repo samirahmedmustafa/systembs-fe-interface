@@ -122,7 +122,6 @@ export class CitizenComponent {
     this.service.getAll(this.resource).subscribe(
       (data: any) => {
         const converted = this.convertData(data);
-        console.log(converted);
         this.dataSource.data = converted;
       },
       (error: any) => {
