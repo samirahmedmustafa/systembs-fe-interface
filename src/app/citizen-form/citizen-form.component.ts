@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GenericService } from '../service/generic.service';
-import { City } from '../city/city.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotifierService } from 'angular-notifier';
 import { Observable, ReplaySubject, Subject, take, takeUntil } from 'rxjs';
@@ -25,7 +24,7 @@ import { Citizen } from '../citizen/citizen.component';
 })
 export class CitizenFormComponent implements AfterViewInit {
 
-  dropdownSettings:IDropdownSettings = {};
+  dropdownSettings: IDropdownSettings = {};
 
   schoolsList: any[] = [];
   gendersList: any[] = [];
@@ -79,6 +78,17 @@ export class CitizenFormComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
+    // this.supportsList = [
+    //   {
+    //     "id": 2,
+    //     "name": "UN"
+    //   },
+    //   {
+    //     "id": 3,
+    //     "name": "UNICEF"
+    //   }
+    // ];
+
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -86,21 +96,22 @@ export class CitizenFormComponent implements AfterViewInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
-      allowSearchFilter: true
+      allowSearchFilter: true,
+
     };
 
-    this.nationalities$.subscribe((data) => this.nationalitiesList = data,(error) => this.notifier.notify("error", error.message));
-    this.schools$.subscribe((data) => this.schoolsList = data,(error) => this.notifier.notify("error", error.message));
-    this.gases$.subscribe((data) => this.gasesList = data,(error) => this.notifier.notify("error", error.message));
-    this.genders$.subscribe((data) => this.gendersList = data,(error) => this.notifier.notify("error", error.message));
-    this.professions$.subscribe((data) => this.professionsList = data,(error) => this.notifier.notify("error", error.message));
-    this.medicines$.subscribe((data) => this.medicinesList = data,(error) => this.notifier.notify("error", error.message));
-    this.diseases$.subscribe((data) => this.diseasesList = data,(error) => this.notifier.notify("error", error.message));
-    this.nationalities$.subscribe((data) => this.nationalitiesList = data,(error) => this.notifier.notify("error", error.message));
-    this.qualifications$.subscribe((data) => this.qualificationsList = data,(error) => this.notifier.notify("error", error.message));
-    this.disabilities$.subscribe((data) => this.disabilitiesList = data,(error) => this.notifier.notify("error", error.message));
-    this.locations$.subscribe((data) => this.locationsList = data,(error) => this.notifier.notify("error", error.message));
-    this.supports$.subscribe((data) => this.supportsList = data,(error) => this.notifier.notify("error", error.message));
+    this.nationalities$.subscribe((data) => this.nationalitiesList = data, (error) => this.notifier.notify("error", error.message));
+    this.schools$.subscribe((data) => this.schoolsList = data, (error) => this.notifier.notify("error", error.message));
+    this.gases$.subscribe((data) => this.gasesList = data, (error) => this.notifier.notify("error", error.message));
+    this.genders$.subscribe((data) => this.gendersList = data, (error) => this.notifier.notify("error", error.message));
+    this.professions$.subscribe((data) => this.professionsList = data, (error) => this.notifier.notify("error", error.message));
+    this.medicines$.subscribe((data) => this.medicinesList = data, (error) => this.notifier.notify("error", error.message));
+    this.diseases$.subscribe((data) => this.diseasesList = data, (error) => this.notifier.notify("error", error.message));
+    this.nationalities$.subscribe((data) => this.nationalitiesList = data, (error) => this.notifier.notify("error", error.message));
+    this.qualifications$.subscribe((data) => this.qualificationsList = data, (error) => this.notifier.notify("error", error.message));
+    this.disabilities$.subscribe((data) => this.disabilitiesList = data, (error) => this.notifier.notify("error", error.message));
+    this.locations$.subscribe((data) => this.locationsList = data, (error) => this.notifier.notify("error", error.message));
+    this.supports$.subscribe((data) => this.supportsList = data, (error) => this.notifier.notify("error", error.message));
 
   }
 

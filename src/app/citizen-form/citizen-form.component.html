@@ -59,22 +59,22 @@
             </ng-select>
             <mat-error *ngIf="form.get('gender')?.touched && form.get('gender')?.invalid">Please enter a gender.</mat-error>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="supportsList" formControlName="supports">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'supportsList'" [settings]="dropdownSettings" [data]="supportsList" formControlName="supports">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="medicinesList" formControlName="medicines">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'medicinesList'" [settings]="dropdownSettings" [data]="medicinesList" formControlName="medicines">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="diseasesList" formControlName="diseases">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'diseasesList'" [settings]="dropdownSettings" [data]="diseasesList" formControlName="diseases">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="disabilitiesList" formControlName="disabilities">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'disabilitiesList'" [settings]="dropdownSettings" [data]="disabilitiesList" formControlName="disabilities">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="professionsList" formControlName="professions">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'professionsList'" [settings]="dropdownSettings" [data]="professionsList" formControlName="professions">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="gasesList" formControlName="gases">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'gasesList'" [settings]="dropdownSettings" [data]="gasesList" formControlName="gases">
             </ng-multiselect-dropdown>
 
             <mat-checkbox formControlName="isGainingSupport">isGainingSupport</mat-checkbox>
@@ -88,5 +88,3 @@
         </form>
     </div>
 </div>
-
-<div> {{form.value | json}}</div>

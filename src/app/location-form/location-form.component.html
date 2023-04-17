@@ -1,1 +1,84 @@
-<p>location-form works!</p>
+<div>
+    <div>Enter New house/flat</div>
+    <div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Number</mat-label>
+                <input matInput formControlName="number" required placeholder="e.g 122323">
+                <mat-error *ngIf="form.get('number')?.touched && form.get('number')?.invalid">Please enter a number.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>blkNo</mat-label>
+                <input matInput formControlName="blkNo" required placeholder="e.g 2134123412">
+                <mat-error *ngIf="form.get('blkNo')?.touched && form.get('blkNo')?.invalid">Please enter a blkNo.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>ownerId</mat-label>
+                <input matInput formControlName="ownerID" required placeholder="e.g 2134123412">
+                <mat-error *ngIf="form.get('ownerID')?.touched && form.get('ownerID')?.invalid">Please enter a ownerId.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>ownerName</mat-label>
+                <textarea matInput formControlName="ownerName" placeholder="e.g ownerName"></textarea>
+                <mat-error *ngIf="form.get('ownerName')?.touched && form.get('ownerName')?.invalid">Please enter a ownerName.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>ownerPhoneNo</mat-label>
+                <textarea matInput formControlName="ownerPhoneNo" placeholder="e.g ownerPhoneNo"></textarea>
+                <mat-error *ngIf="form.get('ownerPhoneNo')?.invalid && form.get('ownerPhoneNo')?.invalid">Please enter a ownerPhoneNo.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>delegateId</mat-label>
+                <textarea matInput formControlName="delegateId" placeholder="e.g delegateId"></textarea>
+                <mat-error *ngIf="form.get('delegateId')?.invalid && form.get('delegateId')?.invalid">Please enter a delegateId.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>delegatePhoneNo</mat-label>
+                <textarea matInput formControlName="delegatePhoneNo" placeholder="e.g delegatePhoneNo"></textarea>
+                <mat-error *ngIf="form.get('delegatePhoneNo')?.invalid && form.get('delegatePhoneNo')?.invalid">Please enter a delegatePhoneNo.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>delegateName</mat-label>
+                <textarea matInput formControlName="delegateName" placeholder="e.g delegateName"></textarea>
+                <mat-error *ngIf="form.get('delegateName')?.invalid && form.get('delegateName')?.invalid">Please enter a delegateName.</mat-error>
+            </mat-form-field>
+
+            <ng-select style="margin: 10px;" [items]="buildingTypeList" bindLabel="name" placeholder="Select buildingType" formControlName="buildingType">
+            </ng-select>
+            <mat-error *ngIf="form.get('buildingType')?.touched && form.get('buildingType')?.invalid">Please enter a buildingType.</mat-error>
+
+            <ng-select style="margin: 10px;" [items]="conditionList" bindLabel="name" placeholder="Select condition" formControlName="condition">
+            </ng-select>
+            <mat-error *ngIf="form.get('condition')?.touched && form.get('condition')?.invalid">Please enter a condition.</mat-error>
+
+            <ng-select style="margin: 10px;" [items]="cityList" bindLabel="name" placeholder="Select city" formControlName="city">
+            </ng-select>
+            <mat-error *ngIf="form.get('city')?.touched && form.get('city')?.invalid">Please enter a city.</mat-error>
+
+            <ng-select style="margin: 10px;" [items]="neighbourhoodList" bindLabel="name" placeholder="Select neighbourhood" formControlName="neighbourhood">
+            </ng-select>
+            <mat-error *ngIf="form.get('neighbourhood')?.touched && form.get('neighbourhood')?.invalid">Please enter a neighbourhood.</mat-error>
+
+            <ng-select style="margin: 10px;" [items]="localityList" bindLabel="name" placeholder="Select locality" formControlName="locality">
+            </ng-select>
+            <mat-error *ngIf="form.get('locality')?.touched && form.get('locality')?.invalid">Please enter a locality.</mat-error>
+
+            <ng-select style="margin: 10px;" [items]="stateList" bindLabel="name" placeholder="Select state" formControlName="state">
+            </ng-select>
+            <mat-error *ngIf="form.get('state')?.touched && form.get('state')?.invalid">Please enter a state.</mat-error>
+
+            <mat-dialog-actions>
+                <button mat-button mat-dialog-close type="button">Cancel</button>
+                <button mat-button type="submit" [disabled]="form.invalid" cdkFocusInitial>Save</button>
+            </mat-dialog-actions>
+        </form>
+    </div>
+</div>
