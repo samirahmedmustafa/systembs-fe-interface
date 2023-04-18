@@ -6,13 +6,13 @@
             <mat-form-field appearance="fill">
                 <mat-label>Name</mat-label>
                 <input matInput formControlName="name" required placeholder="e.g Khartoum">
-                <mat-error *ngIf="form.get('name')?.touched && form.get('name')?.invalid">Please enter a name.</mat-error>
+                <mat-error *ngIf="form.get('name')?.invalid">Please enter a name.</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Phone No.</mat-label>
                 <input matInput formControlName="phoneNo" required placeholder="e.g 2134123412">
-                <mat-error *ngIf="form.get('phoneNo')?.touched && form.get('phoneNo')?.invalid">Please enter a phoneNo.</mat-error>
+                <mat-error *ngIf="form.get('phoneNo')?.invalid">Please enter a phoneNo.</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
@@ -30,7 +30,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Building Address Details</mat-label>
                 <textarea matInput formControlName="buildAddressDetails" placeholder="e.g buildAddressDetails"></textarea>
-                <mat-error *ngIf="form.get('buildAddressDetails')?.invalid && form.get('buildAddressDetails')?.invalid">Please enter a buildAddressDetails.</mat-error>
+                <mat-error *ngIf="form.get('buildAddressDetails')?.invalid">Please enter a buildAddressDetails.</mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
@@ -44,37 +44,40 @@
             </mat-form-field>
 
             <ng-select style="margin: 10px;" [items]="locationsList" bindLabel="number" placeholder="Select location" formControlName="location">
+                <!-- <mat-error *ngIf="form.get('location')?.touched && form.get('location')?.invalid">Please enter a location.</mat-error> -->
             </ng-select>
-            <mat-error *ngIf="form.get('location')?.touched && form.get('location')?.invalid">Please enter a location.</mat-error>
 
             <ng-select style="margin: 10px;" [items]="nationalitiesList" bindLabel="name" placeholder="Select nationality" formControlName="nationality">
+                <mat-error *ngIf="form.get('nationality')?.invalid">Please enter a nationality.</mat-error>
             </ng-select>
-            <mat-error *ngIf="form.get('nationality')?.touched && form.get('nationality')?.invalid">Please enter a nationality.</mat-error>
 
             <ng-select style="margin: 10px;" [items]="qualificationsList" bindLabel="name" placeholder="Select qualification" formControlName="qualification">
+                <mat-error *ngIf="form.get('qualification')?.invalid">Please enter a qualification.</mat-error>
             </ng-select>
-            <mat-error *ngIf="form.get('qualification')?.touched && form.get('qualification')?.invalid">Please enter a qualification.</mat-error>
 
             <ng-select style="margin: 10px;" [items]="gendersList" bindLabel="name" placeholder="Select gender" formControlName="gender">
+                <mat-error *ngIf="form.get('gender')?.invalid">Please enter a gender.</mat-error>
             </ng-select>
-            <mat-error *ngIf="form.get('gender')?.touched && form.get('gender')?.invalid">Please enter a gender.</mat-error>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'supportsList'" [settings]="dropdownSettings" [data]="supportsList" formControlName="supports">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'Select supports'" [settings]="dropdownSettings" [data]="supportsList" formControlName="supports">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'medicinesList'" [settings]="dropdownSettings" [data]="medicinesList" formControlName="medicines">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'Select medicines'" [settings]="dropdownSettings" [data]="medicinesList" formControlName="medicines">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'diseasesList'" [settings]="dropdownSettings" [data]="diseasesList" formControlName="diseases">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'Select diseases'" [settings]="dropdownSettings" [data]="diseasesList" formControlName="diseases">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'disabilitiesList'" [settings]="dropdownSettings" [data]="disabilitiesList" formControlName="disabilities">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'Select disabilities'" [settings]="dropdownSettings" [data]="disabilitiesList" formControlName="disabilities">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'professionsList'" [settings]="dropdownSettings" [data]="professionsList" formControlName="professions">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'Select professions'" [settings]="dropdownSettings" [data]="professionsList" formControlName="professions">
             </ng-multiselect-dropdown>
 
-            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'gasesList'" [settings]="dropdownSettings" [data]="gasesList" formControlName="gases">
+            <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'Select gases'" [settings]="dropdownSettings" [data]="gasesList" formControlName="gases">
+            </ng-multiselect-dropdown>
+
+            <ng-multiselect-dropdown *ngIf="isMale()" style="margin: 10px;" [placeholder]="'Select wives'" [settings]="dropdownSettings" [data]="femaleList" formControlName="wives">
             </ng-multiselect-dropdown>
 
             <mat-checkbox formControlName="isGainingSupport">isGainingSupport</mat-checkbox>
@@ -88,3 +91,5 @@
         </form>
     </div>
 </div>
+
+<!-- {{form.value | json}} -->

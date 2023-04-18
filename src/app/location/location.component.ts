@@ -122,7 +122,7 @@ export class LocationComponent implements OnInit {
 
     this.service.getAll(this.resource).subscribe(
       (data: any) => {
-        console.log("data: ", data)
+        // console.log("data: ", data)
         // const converted = this.convertData(data);
         this.dataSource.data = data;
       },
@@ -132,36 +132,37 @@ export class LocationComponent implements OnInit {
     );
   }
 
-  convertData(data: any[][]): Citizen[] {
+  // convertData(data: any[][]): Citizen[] {
 
-    return data.map((item) => {
-      return {
-        id: item[0],
-        name: item[1],
-        phoneNo: item[9],
-        dateOfBirth: item[3],
-        nationalNo: item[8],
-        isDisabled: item[5],
-        skills: item[10],
-        isSupportEligible: item[7],
-        isGainingSupport: item[6],
-        isDeceased: item[4],
-        buildAddressDetails: item[2],
-        location: item[12],
-        nationality: item[13],
-        qualification: item[14],
-        school: item[15],
-        gender: item[11],
-        supports: item[21],
-        medicines: item[17],
-        diseases: item[18],
-        disabilities: item[20],
-        professions: item[19],
-        gases: item[16],
-      };
-    });
+  //   return data.map((item) => {
+  //     return {
+  //       id: item[0],
+  //       name: item[1],
+  //       phoneNo: item[9],
+  //       dateOfBirth: item[3],
+  //       nationalNo: item[8],
+  //       isDisabled: item[5],
+  //       skills: item[10],
+  //       isSupportEligible: item[7],
+  //       isGainingSupport: item[6],
+  //       isDeceased: item[4],
+  //       buildAddressDetails: item[2],
+  //       location: item[12],
+  //       nationality: item[13],
+  //       qualification: item[14],
+  //       school: item[15],
+  //       gender: item[11],
+  //       supports: item[21],
+  //       medicines: item[17],
+  //       diseases: item[18],
+  //       disabilities: item[20],
+  //       professions: item[19],
+  //       gases: item[16],
+  //       wives: item[21]
+  //     };
+  //   });
 
-  }
+  // }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

@@ -96,6 +96,11 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> medicines </th>
             <td mat-cell *matCellDef="let row"> {{row.medicines}} </td>
         </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="wives">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Wives </th>
+            <td mat-cell *matCellDef="let row"> {{row.wives}} </td>
+        </ng-container>
 
         <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef> </th>

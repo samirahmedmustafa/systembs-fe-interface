@@ -15,6 +15,14 @@ export class GenericService<T> {
     return this.service.get<T[]>(`${endpoint}`);
   }
 
+  getAllCustom(endpoint: string): Observable<T[]> {
+    return this.service.get<T[]>(`${endpoint}`);
+  }
+
+  getAllFemales(endpoint: string): Observable<T[]> {
+    return this.service.get<T[]>(`${endpoint}`);
+  }
+
   get(endpoint: string, id: number): Observable<T> {
     return this.service.get<T>(`${endpoint}/${id}`);
   }
@@ -25,23 +33,23 @@ export class GenericService<T> {
 
   create(endpoint: string, item: T): Observable<T> {
     return this.service.post<T>(`${endpoint}`, item)
-    .pipe(
-      catchError((error: any) => {
-        console.error('An error occurred:', error.error.message);
-        return throwError(error.error);
-      })
-    );
+      .pipe(
+        catchError((error: any) => {
+          console.error('An error occurred:', error.error.message);
+          return throwError(error.error);
+        })
+      );
 
   }
 
   update(endpoint: string, id: number, item: T): Observable<T> {
     return this.service.put<T>(`${endpoint}/${id}`, item)
-    .pipe(
-      catchError((error: any) => {
-        console.error('An error occurred:', error.error.message);
-        return throwError(error.error);
-      })
-    );
+      .pipe(
+        catchError((error: any) => {
+          console.error('An error occurred:', error.error.message);
+          return throwError(error.error);
+        })
+      );
 
   }
 
@@ -49,6 +57,6 @@ export class GenericService<T> {
     return this.service.delete<T>(`${endpoint}/${id}`);
   }
 
-  
+
 }
 

@@ -25,7 +25,7 @@ export class CitizenComponent {
     'dateOfBirth', 'nationalNo', 'isDisabled',
     'skills', 'isSupportEligible', 'isGainingSupport',
     'isDeceased', 'buildAddressDetails', 'location',
-    'nationality', 'qualification', 'gender',
+    'nationality', 'qualification', 'gender', 'wives',
     'edit', 'delete'
   ];
 
@@ -35,7 +35,8 @@ export class CitizenComponent {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
-  resource: string = "/api/citizens";
+  resource: string = "/api/citizens/custom";
+  editresource: string = "/api/citizens";
 
   constructor(
     private service: GenericService<Citizen>,
@@ -67,7 +68,7 @@ export class CitizenComponent {
 
   edit(item: any): void {
 
-    this.service.get(this.resource, item.id).subscribe(
+    this.service.get(this.editresource, item.id).subscribe(
       (data: any) => {
 
         const dialogRef = this.dialog.open(CitizenFormComponent, {
@@ -150,12 +151,13 @@ export class CitizenComponent {
         qualification: item[14],
         school: item[15],
         gender: item[11],
-        supports: item[21],
         medicines: item[17],
         diseases: item[18],
         disabilities: item[20],
         professions: item[19],
         gases: item[16],
+        supports: item[21],
+        wives: item[22]
       };
     });
 
@@ -199,4 +201,5 @@ export interface Citizen {
   disabilities: number;
   professions: number;
   gases: number;
+  wives: number;
 }

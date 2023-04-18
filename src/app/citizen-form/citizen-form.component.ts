@@ -37,6 +37,7 @@ export class CitizenFormComponent implements AfterViewInit {
   qualificationsList: any[] = [];
   locationsList: any[] = [];
   professionsList: any[] = [];
+  femaleList: any[] = [];
 
   nationalities$: Observable<any[]> = this.genderService.getAll("/api/nationalities");
   genders$: Observable<any[]> = this.genderService.getAll("/api/genders");
@@ -49,6 +50,7 @@ export class CitizenFormComponent implements AfterViewInit {
   disabilities$: Observable<any[]> = this.disabilityService.getAll("/api/disabilities");
   locations$: Observable<any[]> = this.locationService.getAll("/api/locations");
   schools$: Observable<any[]> = this.schoolService.getAll("/api/schools");
+  females$: Observable<any[]> = this.service.getAllFemales("/api/citizens/byGender?gender=female");
 
   form: FormGroup = new FormGroup({
     id: new FormControl(),
@@ -73,21 +75,12 @@ export class CitizenFormComponent implements AfterViewInit {
     gases: new FormControl(),
     disabilities: new FormControl(),
     professions: new FormControl(),
+    wives: new FormControl(),
   });
+
   resource: string = "/api/citizens";
 
   ngAfterViewInit() {
-
-    // this.supportsList = [
-    //   {
-    //     "id": 2,
-    //     "name": "UN"
-    //   },
-    //   {
-    //     "id": 3,
-    //     "name": "UNICEF"
-    //   }
-    // ];
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -97,7 +90,6 @@ export class CitizenFormComponent implements AfterViewInit {
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
       allowSearchFilter: true,
-
     };
 
     this.nationalities$.subscribe((data) => this.nationalitiesList = data, (error) => this.notifier.notify("error", error.message));
@@ -112,11 +104,10 @@ export class CitizenFormComponent implements AfterViewInit {
     this.disabilities$.subscribe((data) => this.disabilitiesList = data, (error) => this.notifier.notify("error", error.message));
     this.locations$.subscribe((data) => this.locationsList = data, (error) => this.notifier.notify("error", error.message));
     this.supports$.subscribe((data) => this.supportsList = data, (error) => this.notifier.notify("error", error.message));
-
+    this.females$.subscribe((data) => {this.femaleList = data; console.log(data)}, (error) => this.notifier.notify("error", error.message));
   }
 
   ngOnInit() {
-
     if (this.data.ops === "edit")
       this.editForm();
   }
@@ -166,6 +157,7 @@ export class CitizenFormComponent implements AfterViewInit {
         disabilities: this.data.item.disabilities,
         professions: this.data.item.professions,
         gases: this.data.item.gases,
+        wives: this.data.item.wives,
       }
     );
   }
@@ -207,4 +199,7 @@ export class CitizenFormComponent implements AfterViewInit {
     this.dialogRef.close(false);
   }
 
+  isMale() {
+    return this.form.get('gender')?.value?.name === 'Male';
+  }
 }
