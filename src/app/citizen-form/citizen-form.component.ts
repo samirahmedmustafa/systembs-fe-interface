@@ -161,7 +161,7 @@ export class CitizenFormComponent implements AfterViewInit {
         disabilities: this.data.item.disabilities,
         professions: this.data.item.professions,
         gases: this.data.item.gases,
-        wives : this.data.item.followers 
+        wives : this.data.item.wives 
       }
     );
   }

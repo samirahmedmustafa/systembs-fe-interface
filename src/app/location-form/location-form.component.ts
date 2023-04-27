@@ -42,13 +42,13 @@ export class LocationFormComponent {
     delegateId: new FormControl(),
     delegateName: new FormControl(),
     delegatePhoneNo: new FormControl(),
-    buildingType: new FormControl('', Validators.required),
-    condition: new FormControl('', Validators.required),
+    buildingType: new FormControl(null, Validators.required),
+    condition: new FormControl(null, Validators.required),
     citizens: new FormControl(),
-    city: new FormControl('', Validators.required),
-    neighbourhood: new FormControl('', Validators.required),
-    locality: new FormControl(),
-    state: new FormControl('', Validators.required)
+    city: new FormControl(null, Validators.required),
+    neighbourhood: new FormControl(null, Validators.required),
+    locality: new FormControl(null, Validators.required),
+    state: new FormControl(null, Validators.required)
   });
   resource: string = "/api/locations";
 

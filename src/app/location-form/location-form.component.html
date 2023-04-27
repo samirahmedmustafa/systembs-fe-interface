@@ -59,21 +59,21 @@
             </ng-select>
             <mat-error *ngIf="form.get('condition')?.touched && form.get('condition')?.invalid">Please enter a condition.</mat-error>
 
+            <ng-select style="margin: 10px;" [items]="stateList" bindLabel="name" placeholder="Select state" formControlName="state">
+            </ng-select>
+            <mat-error *ngIf="form.get('state')?.touched && form.get('state')?.invalid">Please enter a state.</mat-error>
+
             <ng-select style="margin: 10px;" [items]="cityList" bindLabel="name" placeholder="Select city" formControlName="city">
             </ng-select>
             <mat-error *ngIf="form.get('city')?.touched && form.get('city')?.invalid">Please enter a city.</mat-error>
-
-            <ng-select style="margin: 10px;" [items]="neighbourhoodList" bindLabel="name" placeholder="Select neighbourhood" formControlName="neighbourhood">
-            </ng-select>
-            <mat-error *ngIf="form.get('neighbourhood')?.touched && form.get('neighbourhood')?.invalid">Please enter a neighbourhood.</mat-error>
 
             <ng-select style="margin: 10px;" [items]="localityList" bindLabel="name" placeholder="Select locality" formControlName="locality">
             </ng-select>
             <mat-error *ngIf="form.get('locality')?.touched && form.get('locality')?.invalid">Please enter a locality.</mat-error>
 
-            <ng-select style="margin: 10px;" [items]="stateList" bindLabel="name" placeholder="Select state" formControlName="state">
+            <ng-select style="margin: 10px;" [items]="neighbourhoodList" bindLabel="name" placeholder="Select neighbourhood" formControlName="neighbourhood">
             </ng-select>
-            <mat-error *ngIf="form.get('state')?.touched && form.get('state')?.invalid">Please enter a state.</mat-error>
+            <mat-error *ngIf="form.get('neighbourhood')?.touched && form.get('neighbourhood')?.invalid">Please enter a neighbourhood.</mat-error>
 
             <mat-dialog-actions>
                 <button mat-button mat-dialog-close type="button">Cancel</button>

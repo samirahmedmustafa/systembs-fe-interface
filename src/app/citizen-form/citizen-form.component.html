@@ -5,7 +5,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Name</mat-label>
-                <input matInput formControlName="name" required placeholder="e.g Khartoum">
+                <input matInput formControlName="name" required placeholder="e.g Omer">
                 <mat-error *ngIf="form.get('name')?.invalid">Please enter a name.</mat-error>
             </mat-form-field>
 
@@ -75,9 +75,6 @@
             </ng-multiselect-dropdown>
 
             <ng-multiselect-dropdown style="margin: 10px;" [placeholder]="'Select gases'" [settings]="dropdownSettings" [data]="gasesList" formControlName="gases">
-            </ng-multiselect-dropdown>
-
-            <ng-multiselect-dropdown *ngIf="isMale()" style="margin: 10px;" [placeholder]="'Select wives'" [settings]="dropdownSettings" [data]="femaleList" formControlName="wives">
             </ng-multiselect-dropdown>
 
             <ng-multiselect-dropdown *ngIf="isMale()" style="margin: 10px;" [placeholder]="'Select wives'" [settings]="dropdownSettings" [data]="femaleList" formControlName="wives">
