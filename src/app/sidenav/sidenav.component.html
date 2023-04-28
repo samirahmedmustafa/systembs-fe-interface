@@ -11,7 +11,7 @@
             </a>
             <mat-divider></mat-divider>
             <a mat-list-item (click)="toggleDemographics()">
-                <mat-icon mat-list-icon>expand_more</mat-icon>
+                <mat-icon mat-list-icon>add_location</mat-icon>
                 Demographics
                 <mat-icon class="submenu-arrow" *ngIf="demographics">expand_less</mat-icon>
                 <mat-icon class="submenu-arrow" *ngIf="!demographics">expand_more</mat-icon>
@@ -44,7 +44,8 @@
             </div>
             <mat-divider></mat-divider>
             <a mat-list-item (click)="toggleSkills()">
-                <mat-icon mat-list-icon>expand_more</mat-icon>
+                <mat-icon mat-list-icon>cast_for_education</mat-icon>
+
                 Education
                 <mat-icon class="submenu-arrow" *ngIf="skills">expand_less</mat-icon>
                 <mat-icon class="submenu-arrow" *ngIf="!skills">expand_more</mat-icon>
@@ -65,7 +66,7 @@
             </div>
             <mat-divider></mat-divider>
             <a mat-list-item (click)="toggleHealth()">
-                <mat-icon mat-list-icon>expand_more</mat-icon>
+                <mat-icon mat-list-icon>local_hospital</mat-icon>
                 Health
                 <mat-icon class="submenu-arrow" *ngIf="health">expand_less</mat-icon>
                 <mat-icon class="submenu-arrow" *ngIf="!health">expand_more</mat-icon>
@@ -86,7 +87,7 @@
             </div>
             <mat-divider></mat-divider>
             <a mat-list-item (click)="toggleConstructions()">
-                <mat-icon mat-list-icon>expand_more</mat-icon>
+                <mat-icon mat-list-icon>bar_chart</mat-icon>
                 Others
                 <mat-icon class="submenu-arrow" *ngIf="health">expand_less</mat-icon>
                 <mat-icon class="submenu-arrow" *ngIf="!health">expand_more</mat-icon>
