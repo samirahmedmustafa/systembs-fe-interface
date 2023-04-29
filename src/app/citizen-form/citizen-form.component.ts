@@ -104,7 +104,7 @@ export class CitizenFormComponent implements AfterViewInit {
     this.disabilities$.subscribe((data) => this.disabilitiesList = data, (error) => this.notifier.notify("error", error.message));
     this.locations$.subscribe((data) => this.locationsList = data, (error) => this.notifier.notify("error", error.message));
     this.supports$.subscribe((data) => this.supportsList = data, (error) => this.notifier.notify("error", error.message));
-    this.females$.subscribe((data) => {this.femaleList = data; console.log(data)}, (error) => this.notifier.notify("error", error.message));
+    this.females$.subscribe((data) => {this.femaleList = data}, (error) => this.notifier.notify("error", error.message));
   }
 
   ngOnInit() {
@@ -134,6 +134,10 @@ export class CitizenFormComponent implements AfterViewInit {
   }
 
   editForm() {
+
+    console.log("this.data.item.wives: ", this.data.item.wives);
+    console.log("this.data.item.supports: ", this.data.item.supports);
+
     this.form.patchValue(
       {
         id: this.data.item.id,
@@ -157,7 +161,7 @@ export class CitizenFormComponent implements AfterViewInit {
         disabilities: this.data.item.disabilities,
         professions: this.data.item.professions,
         gases: this.data.item.gases,
-        wives: this.data.item.wives,
+        wives : this.data.item.wives 
       }
     );
   }

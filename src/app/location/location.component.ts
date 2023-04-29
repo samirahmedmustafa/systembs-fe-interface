@@ -107,7 +107,7 @@ export class LocationComponent implements OnInit {
         if (result?.message !== "" && result?.message !== undefined) {
           this.service.notifier.notify("error", `${result?.message}`);
         } else {
-          this.service.notifier.notify("success", `${result.name} is added successfully`);
+          this.service.notifier.notify("success", `${result.number} is added successfully`);
           this.getAll();
         }
       }

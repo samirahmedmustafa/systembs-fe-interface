@@ -157,7 +157,8 @@ export class CitizenComponent {
         professions: item[19],
         gases: item[16],
         supports: item[21],
-        wives: item[22]
+        followers: item[22]
+        // wives: item[22],
       };
     });
 
@@ -201,5 +202,6 @@ export interface Citizen {
   disabilities: number;
   professions: number;
   gases: number;
-  wives: number;
+  followers : number;
+  // wives: number;
 }
